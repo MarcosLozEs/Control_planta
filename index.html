@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Planta</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="estils.css">
+    <link rel="stylesheet" href="login/estils_login.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+
+        <div class="row" name="linea">
+            <div class="col-12" style="background-color: rgb(61, 61, 61);">
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row" name="contenedor-central">
+                <div class="col-12 col-lg-6">
+                    <div class="num-pad">
+                        <div class="row">
+                            <div class="col-4"><button class="btn  btn-block" name="num"
+                                    onclick="valorInput(7)">7</button>
+                            </div>
+                            <div class="col-4"><button class="btn  btn-block" name="num"
+                                    onclick="valorInput(8)">8</button>
+                            </div>
+                            <div class="col-4"><button class="btn  btn-block" name="num"
+                                    onclick="valorInput(9)">9</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4"><button class="btn btn-block" name="num"
+                                    onclick="valorInput(4)">4</button>
+                            </div>
+                            <div class="col-4"><button class="btn btn-block" name="num"
+                                    onclick="valorInput(5)">5</button>
+                            </div>
+                            <div class="col-4"><button class="btn btn-block" name="num"
+                                    onclick="valorInput(6)">6</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4"><button class="btn btn-block" name="num"
+                                    onclick="valorInput(1)">1</button>
+                            </div>
+                            <div class="col-4"><button class="btn btn-block" name="num"
+                                    onclick="valorInput(2)">2</button>
+                            </div>
+                            <div class="col-4"><button class="btn btn-block" name="num"
+                                    onclick="valorInput(3)">3</button>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-8" id="cero"><button class="btn btn-block" name="num"
+                                    onclick="valorInput(0)">0</button></div>
+                            <div class="col-4"><button name="num" class="btn btn-block"
+                                    onclick="eliminarInputText('')">D</button></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="inputs" style="background-color: red; min-height: 90px;"> LOGO</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12"><input class="inputs" placeholder=" ID" type="text" id="usuari_id" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12"><input class="inputs" placeholder=" contrasenya" type="password"
+                                id="contraseña" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12"><button name="num" class="inputs" onclick="enviarDades()">ACCEDER</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col" id="error"></div>
+            </div>
+        </div>
+
+        <div class="row" name="linea">
+            <div class="col-12" style="background-color: rgb(61, 61, 61);">
+
+            </div>
+        </div>
+
+    </div>
+
+    <script src="clase_enviar_dades.js"></script>
+    <script>
+
+
+
+        var focus = "";
+
+        document.addEventListener('click', function (e) {
+            if (e.target.id == 'usuari_id' || e.target.id == 'contraseña') {
+                focus = e.target.id;
+            }
+        });
+
+        function valorInput(numero) {
+            if (focus) {
+                document.getElementById(focus).value += numero;
+            }
+        }
+
+        function eliminarInputText(eliminar) {
+            document.getElementById("usuari_id").value = eliminar;
+            document.getElementById("contraseña").value = eliminar;
+        }
+
+        function guardarInputs() {
+            var usuari_id = document.getElementById('usuari_id').value;
+            var contraseña = document.getElementById('contraseña').value;
+
+            var valor_elementos = [
+                ['usuari_id', usuari_id],
+                ['contraseña', contraseña]
+            ];
+            return valor_elementos;
+        }
+
+        function enviarDadesAlServidor(dadesLogin) {
+            var enviar = new Enviar(dadesLogin, "login/login.php");
+            return enviar.enviarDades();
+        }
+
+        function prosesarResposta(resposta) {
+
+            var resultat = JSON.parse(resposta);
+
+            if (resultat.ruta) {
+                window.location.href = resultat.ruta
+            }
+            else {
+                throw (resultat.error);
+            }
+        }
+
+        function enviarDades() {
+
+            var dadesLogin = guardarInputs();
+
+            enviarDadesAlServidor(dadesLogin).then(function (resposta) {
+
+                prosesarResposta(resposta);
+
+            }).catch(function (error) {
+                document.getElementById("error").innerHTML = error;
+            });
+        }
+
+    </script>
+</body>
+
+</html>

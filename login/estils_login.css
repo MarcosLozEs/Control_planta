@@ -1,0 +1,61 @@
+
+.row[name="contenedor-central"] {
+    font-size: 40px;
+    min-height: 250px;
+    margin-top: 125px;
+    margin-bottom: 23px;
+  }
+  
+#error{
+    text-align: center;
+    font-size: 40px;
+    color: red;
+}
+
+
+button[name="num"] {
+    color: white; /* Color de texto blanco */
+    background-color: rgb(61, 61, 61);
+    border-color: #333; /* Color del borde igual al fondo */
+}
+
+.num-pad .row .col-4 {
+    padding: 0;
+}
+
+.inputs{
+    font-size: 40px;
+    height: 90%;
+    width: 100%;
+    margin: 3px;
+}
+
+.num-pad .btn {
+    font-size: 40px;
+    border-radius: 5%;
+    height: 90%;
+    width: 90%;
+    margin: 3px;
+}
+
+#cero {
+    padding: 0;
+    .btn-block {
+        width: 95%;
+    }
+}
+
+@media (max-width: 991.98px) {
+
+    .num-pad .btn {
+        font-size: 30px;
+     
+    }
+ 
+    .row .col-12 {
+      margin-top: 10px;
+    }
+    
+
+}
+

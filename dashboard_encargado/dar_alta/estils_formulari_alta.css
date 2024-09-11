@@ -1,0 +1,40 @@
+.row[name="contenedor-central"] {
+    font-size: 30px;
+    min-height: 250px;
+    margin-top: 65px;
+    margin-bottom: 1px;
+}
+
+.row[name="contenedor-central baja"] {
+  font-size: 30px;
+  min-height: 250px;
+  margin-top: 65px;
+  margin-bottom: 65px;
+}
+
+
+input[name="inputs"] {
+    min-height: 30px;
+}
+
+.row[name="linea"] {
+  min-height: 60px;
+}
+
+.row [name="formulari"] {
+    margin-top: 5px;
+    min-height:20px;
+}
+
+.form-control{
+    font-size: 30px;
+}
+
+
+
+
+@media (max-width: 991.98px) {
+  .btn{
+    margin-top: 10px;
+  }
+}

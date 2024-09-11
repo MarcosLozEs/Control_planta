@@ -1,0 +1,41 @@
+.row[name="contenedor-central"] {
+    font-size: 35px;
+    min-height: 250px;
+    margin-top: 100px;
+    margin-bottom: 200px;
+}
+
+.col-lg-3 .enviar {
+    color: white;
+    background-color: green;
+    font-size: 40px;
+}
+
+.error{
+    color: green;
+}
+.form-control{
+    font-size: 30px;
+}
+
+
+@media (max-width: 991.98px) {
+
+
+    .btn {
+        font-size: 25px;
+    }
+
+    .col-lg-3 .salir {
+        font-size: 25px;
+    }
+
+    .col-lg-3 .enviar {
+        font-size: 25px;
+    }
+
+    p {
+        font-size: 20px;
+    }
+
+}
